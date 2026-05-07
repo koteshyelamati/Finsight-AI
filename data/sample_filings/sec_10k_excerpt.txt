@@ -1,0 +1,37 @@
+MICROSOFT CORPORATION
+ANNUAL REPORT ON FORM 10-K
+FOR THE FISCAL YEAR ENDED JUNE 30, 2024
+(EXCERPT — ITEM 7: MANAGEMENT'S DISCUSSION AND ANALYSIS)
+
+OVERVIEW
+
+Fiscal year 2024 was a landmark year for Microsoft. Total revenue grew 16% to $245.1 billion, driven primarily by Intelligent Cloud (up 19% to $105.4 billion) and Productivity and Business Processes (up 12% to $77.6 billion). Azure and other cloud services grew 29% year-over-year.
+
+SEGMENT RESULTS
+
+Intelligent Cloud:
+Revenue: $105.4 billion (+19% YoY)
+Operating Income: $48.3 billion (+32% YoY)
+Azure growth was the primary driver. Server products and cloud services revenue increased 21%, while Enterprise Mobility + Security grew 12%.
+
+Productivity and Business Processes:
+Revenue: $77.6 billion (+12% YoY)
+Operating Income: $36.7 billion (+18% YoY)
+Office Commercial products and cloud services revenue grew 13%. LinkedIn revenue increased 10%. Dynamics products and cloud services grew 19%.
+
+More Personal Computing:
+Revenue: $62.0 billion (+17% YoY)
+Operating Income: $16.4 billion (+29% YoY)
+Windows OEM revenue grew 11% driven by PC market recovery. Xbox content and services grew 61%, primarily due to the Activision acquisition.
+
+LIQUIDITY AND CAPITAL RESOURCES
+
+As of June 30, 2024, Microsoft held $75.5 billion in cash, cash equivalents, and short-term investments. Free cash flow for the fiscal year was $74.1 billion. Capital expenditures were $55.7 billion, a significant increase driven by AI infrastructure investment.
+
+RISK FACTORS (SELECTED)
+
+Competition: The markets for our products and services are highly competitive. Key competitors include Alphabet, Amazon, Apple, Meta, and numerous SaaS and open-source providers.
+
+Regulatory: We are subject to evolving data protection regulations globally, including GDPR, CCPA, and emerging AI governance frameworks. Non-compliance could result in material fines and operational disruption.
+
+AI and Emerging Technologies: Our significant investment in AI, including our partnership with OpenAI, carries execution risk. Failure to achieve anticipated returns on these investments could adversely affect our financial condition.

@@ -1,0 +1,33 @@
+GLOBAL EQUITY MARKET OUTLOOK — Q2 2024
+Prepared by: FinSight Research Division
+
+EXECUTIVE SUMMARY
+
+Global equities delivered mixed performance in Q2 2024 as investors navigated persistent inflation, shifting central bank policy expectations, and continued AI-driven sector rotation. The S&P 500 gained 4.3% for the quarter, led by Technology (+9.1%) and Communication Services (+6.8%), while Real Estate (-2.1%) and Materials (-3.4%) lagged.
+
+MACROECONOMIC BACKDROP
+
+The Federal Reserve held rates steady at 5.25–5.50% throughout Q2, citing progress on inflation but flagging labor market resilience as a constraint on early cuts. The Consumer Price Index (CPI) for May 2024 came in at 3.3% year-over-year, down from 3.5% in April, signaling modest disinflation.
+
+U.S. GDP growth for Q1 2024 was revised to 1.4% annualized, below the initial 1.6% estimate, reflecting softer consumer spending. However, Q2 data pointed to reacceleration, with the Atlanta Fed GDPNow model tracking 2.7% growth for Q2.
+
+SECTOR ANALYSIS
+
+Technology:
+The sector continued to benefit from AI infrastructure spending. NVIDIA posted record datacenter revenue of $22.6 billion in Q1 FY2025. Semiconductor equipment companies (ASML, KLAC, LRCX) saw order backlogs expand. However, valuations remain stretched: the tech sector P/E stands at 31x forward earnings vs. the 10-year average of 22x.
+
+Financials:
+Net interest margins began to compress as deposit betas normalized. Regional banks underperformed (-4.2%) while large-cap banks were roughly flat. Loan growth decelerated to 2.1% annualized.
+
+Energy:
+WTI crude averaged $80.6/barrel in Q2, down from $83.1 in Q1. OPEC+ production cuts provided a floor, but weak Chinese demand capped upside. Integrated majors (XOM, CVX) outperformed E&P peers on diversification benefits.
+
+RISK CONSIDERATIONS
+
+1. Geopolitical Risk: Ongoing conflicts in Ukraine and the Middle East continue to create commodity supply uncertainty.
+2. Election Risk: U.S. election uncertainty may increase volatility in H2 2024, particularly in healthcare, energy, and financial regulation.
+3. Credit Risk: High-yield spreads widened 45 bps in Q2 as commercial real estate stress re-emerged. Delinquency rates in office CRE reached 8.1%.
+
+OUTLOOK
+
+We maintain an overweight stance on U.S. large-cap technology and a neutral view on international developed markets. Emerging markets remain a tactical underweight given dollar strength and China's uneven recovery. Fixed income: we favor short-duration investment-grade credit over long Treasuries in a higher-for-longer rate environment.

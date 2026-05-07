@@ -1,0 +1,24 @@
+APPLE INC. — Q2 FY2024 EARNINGS CALL TRANSCRIPT (EXCERPT)
+Date: May 2, 2024
+
+TIM COOK (CEO):
+Good afternoon. Thank you for joining us. We're pleased to report that Apple achieved revenue of $90.8 billion in the second quarter of fiscal 2024, up 5% year-over-year. This growth reflects the strength and resilience of our ecosystem and the continued trust our customers place in Apple products and services.
+
+iPhone revenue for the quarter came in at $45.9 billion. Services set an all-time revenue record at $23.9 billion, up 14% year-over-year, with over 1 billion paid subscriptions across our platform.
+
+LUCA MAESTRI (CFO):
+Our gross margin for the quarter was 46.6%, up 100 basis points sequentially. Products gross margin was 36.6%, and Services gross margin was 74.6%. We returned over $27 billion to shareholders through dividends and share repurchases during the quarter.
+
+We generated $22.7 billion in operating cash flow and ended the quarter with $167 billion in cash and marketable securities. Our net cash position is now $58 billion.
+
+Looking ahead to Q3 FY2024, we expect revenue to grow low- to mid-single digits year-over-year, assuming no macroeconomic shocks. We anticipate Services to continue its double-digit growth trajectory.
+
+ANALYST Q&A:
+
+Q (Morgan Stanley): Tim, can you discuss the performance in Greater China and your outlook given ongoing regulatory headwinds?
+
+TIM COOK: Greater China revenue was $16.4 billion, down 8% year-over-year. We see this as a short-term challenge. Engagement metrics among our installed base in China remain strong, and we continue to invest in local developer relationships. Longer-term, we remain optimistic about the region.
+
+Q (Goldman Sachs): Luca, how should we think about operating leverage as Services continues to scale?
+
+LUCA MAESTRI: Services margin has structural tailwinds as the mix shifts toward higher-margin subscription products. We expect continued expansion in the 74-76% range for the near term.
