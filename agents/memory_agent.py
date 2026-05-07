@@ -5,8 +5,6 @@ import logging
 from pathlib import Path
 from typing import Any
 
-import anthropic
-
 from .state import AgentState
 
 logger = logging.getLogger(__name__)
@@ -20,7 +18,7 @@ Past summaries:
 
 
 class MemoryAgent:
-    def __init__(self, client: anthropic.Anthropic, model: str = "claude-sonnet-4-6") -> None:
+    def __init__(self, client: Any, model: str = "claude-sonnet-4-6") -> None:
         self.client = client
         self.model = model
         MEMORY_DIR.mkdir(parents=True, exist_ok=True)
@@ -49,12 +47,22 @@ class MemoryAgent:
 
         state.memory_context = summary_text
 
-        response = self.client.messages.create(
-            model=self.model,
-            max_tokens=1024,
-            system=MEMORY_SYSTEM_PROMPT.format(summaries=summary_text),
-            messages=[{"role": "user", "content": state.query}],
-        )
-        state.final_answer = response.content[0].text
-        self._save_summary(state)
+        try:
+            response = self.client.messages.create(
+                model=self.model,
+                max_tokens=1024,
+                system=MEMORY_SYSTEM_PROMPT.format(summaries=summary_text),
+                messages=[{"role": "user", "content": state.query}],
+            )
+            state.final_answer = response.content[0].text
+            self._save_summary(state)
+        except Exception as exc:
+            logger.error(
+                "LLM call failed in MemoryAgent (%s: %s).",
+                type(exc).__name__, exc,
+            )
+            state.final_answer = (
+                "The memory service is temporarily unavailable. "
+                "Please try again later or check your LLM provider configuration."
+            )
         return state

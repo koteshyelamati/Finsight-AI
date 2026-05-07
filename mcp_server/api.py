@@ -1,8 +1,13 @@
 from __future__ import annotations
 
+import logging
+
 from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel
 
+from providers.base import ProviderError
+
+logger = logging.getLogger(__name__)
 router = APIRouter()
 
 
@@ -22,8 +27,17 @@ async def query_endpoint(body: QueryRequest, request: Request) -> QueryResponse:
     orchestrator = request.app.state.orchestrator
     try:
         state = orchestrator.run(body.query)
+    except ProviderError as exc:
+        # All configured LLM providers failed AND the agent-level document fallback
+        # was bypassed (e.g. a new agent added without a try/except).
+        logger.error("All LLM providers exhausted for query %r: %s", body.query, exc)
+        raise HTTPException(
+            status_code=503,
+            detail="The LLM service is temporarily unavailable. Please try again later.",
+        ) from exc
     except Exception as exc:
-        raise HTTPException(status_code=500, detail=str(exc)) from exc
+        logger.exception("Unexpected error processing query %r", body.query)
+        raise HTTPException(status_code=500, detail="Internal server error.") from exc
 
     return QueryResponse(
         answer=state.final_answer,

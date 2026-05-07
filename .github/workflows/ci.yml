@@ -34,10 +34,12 @@ jobs:
       - name: Type check
         run: |
           pip install mypy
-          mypy agents/ mcp_server/ --ignore-missing-imports
+          mypy agents/ mcp_server/ providers/ --ignore-missing-imports
 
       - name: Run evaluation suite
         env:
+          # Tests use mocked clients; keys are only needed for live integration runs.
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           pytest evaluation/ -v --tb=short

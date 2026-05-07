@@ -3,8 +3,6 @@ from __future__ import annotations
 import logging
 from typing import Any
 
-import anthropic
-
 from .state import AgentState
 
 logger = logging.getLogger(__name__)
@@ -16,7 +14,7 @@ Memory Context:
 
 
 class ResearchAgent:
-    def __init__(self, client: anthropic.Anthropic, model: str = "claude-sonnet-4-6") -> None:
+    def __init__(self, client: Any, model: str = "claude-sonnet-4-6") -> None:
         self.client = client
         self.model = model
 
@@ -40,17 +38,28 @@ class ResearchAgent:
     def run(self, state: AgentState) -> AgentState:
         messages: list[dict[str, Any]] = [{"role": "user", "content": state.query}]
 
-        response = self.client.messages.create(
-            model=self.model,
-            max_tokens=2048,
-            system=RESEARCH_SYSTEM_PROMPT.format(memory_context=state.memory_context or "None"),
-            tools=self._build_tools(),
-            messages=messages,
-        )
+        try:
+            response = self.client.messages.create(
+                model=self.model,
+                max_tokens=2048,
+                system=RESEARCH_SYSTEM_PROMPT.format(memory_context=state.memory_context or "None"),
+                tools=self._build_tools(),
+                messages=messages,
+            )
+        except Exception as exc:
+            logger.error(
+                "LLM call failed in ResearchAgent (%s: %s).",
+                type(exc).__name__, exc,
+            )
+            state.final_answer = (
+                "The research service is temporarily unavailable. "
+                "Please try again later or check your LLM provider configuration."
+            )
+            return state
 
         result_parts: list[str] = []
         for block in response.content:
-            if hasattr(block, "text"):
+            if block.type == "text" and block.text:
                 result_parts.append(block.text)
             elif block.type == "tool_use":
                 logger.info("Tool call: %s(%s)", block.name, block.input)

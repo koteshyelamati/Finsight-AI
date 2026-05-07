@@ -3,8 +3,6 @@ from __future__ import annotations
 import logging
 from typing import Any
 
-import anthropic
-
 from .state import AgentState
 
 logger = logging.getLogger(__name__)
@@ -15,8 +13,31 @@ Retrieved Documents:
 {context}"""
 
 
+def _doc_fallback_answer(docs: list[dict[str, Any]], query: str) -> str:
+    """Return retrieved document excerpts verbatim when LLM synthesis is unavailable.
+
+    Deterministic: same docs + same query always produce the same output.
+    """
+    if not docs:
+        return (
+            "The LLM service is temporarily unavailable and no indexed documents "
+            "were found for your query. Please try again later, or run `make ingest` "
+            "to load financial documents into the vector store."
+        )
+    header = (
+        "The LLM synthesis service is temporarily unavailable. "
+        "Below are the most relevant document passages retrieved for your query:\n"
+    )
+    excerpts = []
+    for doc in docs[:3]:
+        source = doc.get("metadata", {}).get("source", "Document")
+        content = doc["content"][:600].rstrip()
+        excerpts.append(f"[{source}]\n{content}")
+    return header + "\n\n".join(excerpts)
+
+
 class RAGAgent:
-    def __init__(self, client: anthropic.Anthropic, model: str = "claude-sonnet-4-6") -> None:
+    def __init__(self, client: Any, model: str = "claude-sonnet-4-6") -> None:
         self.client = client
         self.model = model
         self._vector_store: Any = None
@@ -37,11 +58,18 @@ class RAGAgent:
 
         context = "\n\n---\n\n".join(d["content"] for d in docs) if docs else "No documents retrieved."
 
-        response = self.client.messages.create(
-            model=self.model,
-            max_tokens=1024,
-            system=RAG_SYSTEM_PROMPT.format(context=context),
-            messages=[{"role": "user", "content": state.query}],
-        )
-        state.final_answer = response.content[0].text
+        try:
+            response = self.client.messages.create(
+                model=self.model,
+                max_tokens=1024,
+                system=RAG_SYSTEM_PROMPT.format(context=context),
+                messages=[{"role": "user", "content": state.query}],
+            )
+            state.final_answer = response.content[0].text
+        except Exception as exc:
+            logger.error(
+                "LLM call failed in RAGAgent (%s: %s); returning document fallback.",
+                type(exc).__name__, exc,
+            )
+            state.final_answer = _doc_fallback_answer(docs, state.query)
         return state

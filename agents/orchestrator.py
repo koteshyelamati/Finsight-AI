@@ -1,9 +1,7 @@
 from __future__ import annotations
 
 import logging
-from typing import Literal
-
-import anthropic
+from typing import Any, Literal
 
 from .state import AgentState
 from .rag_agent import RAGAgent
@@ -25,7 +23,7 @@ Respond with exactly one word: rag, research, or memory."""
 
 
 class Orchestrator:
-    def __init__(self, client: anthropic.Anthropic, model: str = "claude-sonnet-4-6") -> None:
+    def __init__(self, client: Any, model: str = "claude-sonnet-4-6") -> None:
         self.client = client
         self.model = model
         self.rag_agent = RAGAgent(client, model)
@@ -33,13 +31,20 @@ class Orchestrator:
         self.memory_agent = MemoryAgent(client, model)
 
     def route(self, state: AgentState) -> Literal["rag", "research", "memory"]:
-        response = self.client.messages.create(
-            model=self.model,
-            max_tokens=10,
-            messages=[{"role": "user", "content": ROUTING_PROMPT.format(query=state.query)}],
-        )
-        route = response.content[0].text.strip().lower()
-        if route not in {"rag", "research", "memory"}:
+        try:
+            response = self.client.messages.create(
+                model=self.model,
+                max_tokens=10,
+                messages=[{"role": "user", "content": ROUTING_PROMPT.format(query=state.query)}],
+            )
+            route = response.content[0].text.strip().lower()
+            if route not in {"rag", "research", "memory"}:
+                route = "rag"
+        except Exception as exc:
+            logger.error(
+                "LLM routing call failed (%s: %s); defaulting to route='rag'.",
+                type(exc).__name__, exc,
+            )
             route = "rag"
         logger.info("Routed query to: %s", route)
         state.route = route
