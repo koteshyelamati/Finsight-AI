@@ -34,8 +34,9 @@ class MemoryAgent:
 
     def _save_summary(self, state: AgentState) -> None:
         import time
-        payload = {"timestamp": time.time(), "query": state.query, "answer": state.final_answer}
-        dest = MEMORY_DIR / f"{int(payload['timestamp'])}.json"
+        ts: float = time.time()
+        payload = {"timestamp": ts, "query": state.query, "answer": state.final_answer}
+        dest = MEMORY_DIR / f"{int(ts)}.json"
         dest.write_text(json.dumps(payload, indent=2))
 
     def run(self, state: AgentState) -> AgentState:

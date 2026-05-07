@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import argparse
 import logging
-import os
 from pathlib import Path
 
 logger = logging.getLogger(__name__)
@@ -42,7 +41,9 @@ def ingest(source_dir: Path, collection_name: str = "finsight") -> None:
     client = chromadb.PersistentClient(path=str(Path(__file__).parent / "chroma_db"))
     collection = client.get_or_create_collection(collection_name)
 
-    ids, texts, metadatas = [], [], []
+    ids: list[str] = []
+    texts: list[str] = []
+    metadatas: list[dict[str, str | int | float | bool]] = []
     for doc in docs:
         chunks = chunk_text(doc["content"])
         for i, chunk in enumerate(chunks):

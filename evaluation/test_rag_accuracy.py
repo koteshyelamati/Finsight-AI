@@ -1,10 +1,9 @@
 from __future__ import annotations
 
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock
 
-import pytest
 
-from agents import RAGAgent, AgentState
+from agents import RAGAgent
 
 
 def test_rag_returns_answer(mock_anthropic_client, sample_state, sample_docs):

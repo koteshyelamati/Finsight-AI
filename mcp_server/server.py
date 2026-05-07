@@ -7,7 +7,7 @@ from fastapi import FastAPI
 
 from .api import router
 from agents import Orchestrator
-from providers import build_llm_router, ProviderError
+from providers import build_llm_router
 
 logger = logging.getLogger(__name__)
 

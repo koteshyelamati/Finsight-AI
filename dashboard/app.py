@@ -36,7 +36,7 @@ def build_app() -> None:
                 try:
                     response = requests.post(
                         f"{API_URL}/query",
-                        json={"query": prompt},
+                        json={"query": prompt, "route_override": route_override},
                         timeout=30,
                     )
                     response.raise_for_status()

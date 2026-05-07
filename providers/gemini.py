@@ -118,6 +118,8 @@ class GeminiProvider(LLMProvider):
 
         blocks: list[ContentBlock] = []
         for candidate in response.candidates or []:
+            if candidate.content is None:
+                continue
             for part in candidate.content.parts or []:
                 fc = getattr(part, "function_call", None)
                 if fc:
